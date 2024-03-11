@@ -8,8 +8,8 @@
         delay: 5 # (Default is 1 min) i.e plugin runs every 1 minute
 
   rules:
-    - name: Problem payload Dynatrace for CPU issue
-      condition: event.title is match("Test error")
+    - name: Problem payload Dynatrace for Failure Rate
+      condition: event.name is match("Failure rate increase")
       action:
         run_job_template:
           name: "Trigger test playbook"
