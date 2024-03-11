@@ -2,11 +2,8 @@
 - name: Listen for events on a webhook
   hosts: all
   sources:
-    - dynatrace.event_driven_ansible.dt_esa_api:
-        dt_api_host: '{{ var_dt_api_host }}' 
-        dt_api_token: '{{ var_dt_api_token }}' 
-        delay: 5 # (Default is 1 min) i.e plugin runs every 1 minute
-
+    - dynatrace.event_driven_ansible.dt_webhook:
+    
   rules:
     - name: Problem payload Dynatrace for Failure Rate
       condition: event.name is match("Failure rate increase")
