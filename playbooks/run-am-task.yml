@@ -1,5 +1,5 @@
 ---
-- name:  local event-driven-ansible test
+- name:  am local event-driven-ansible test
   hosts: localhost
   tasks:
     - name: Print Dynatrace event
