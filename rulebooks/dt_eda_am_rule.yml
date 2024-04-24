@@ -8,21 +8,27 @@
         token: '{{ var_eda_token }}' 
 
   rules:
-    - name: Failure Rate Increase
-      condition: event.payload.eventData["event.name"] is match ("Failure rate increase")
+    - name: Problem payload Dynatrace for CPU issue
+      condition: event.payload.problemTitle contains "CPU saturation"
       action:
         run_job_template:
-          name: "Reset canary weighting"
+          name: "Remediate CPU saturation issue"
+          organization: "Default"
+    - name: Problem payload Dynatrace for App Failure rate increase issue
+      condition: event.payload.problemTitle contains "Failure rate increase"
+      action:
+        run_job_template:
+          name: "Remediate Failure rate increase EC2"
+          organization: "Default"
+    - name: Preemptive scaling 
+      condition: event.payload.eventData["event.category"] is match ("CUSTOM_ALERT") and event.payload.eventData["event.description"] is match ("The CPU usage % value was above normal behavior.")
+      action:
+        run_job_template:
+          name: "ScalingCPU"
+          organization: "Default"              
+     - name: Preemptive Disk management 
+       condition: event.payload.eventData["event.category"] is match ("CUSTOM_ALERT") and event.payload.eventData["event.description"] is match ("The Disk used % value was above normal behavior.")
+       action:
+         run_job_template:
+          name: "ScalingDisk"
           organization: "Default"    
-  - name: Preemptive scaling 
-        condition: event.payload.eventData["event.category"] is match ("CUSTOM_ALERT") and event.payload.eventData["event.description"] is match ("The CPU usage % value was above normal behavior.")
-        action:
-          run_job_template:
-            name: "ScalingCPU"
-            organization: "Default"              
-  - name: Preemptive Disk management 
-        condition: event.payload.eventData["event.category"] is match ("CUSTOM_ALERT") and event.payload.eventData["event.description"] is match ("The Disk used % value was above normal behavior.")
-        action:
-          run_job_template:
-            name: "ScalingDisk"
-            organization: "Default"    
