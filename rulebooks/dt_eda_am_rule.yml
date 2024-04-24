@@ -32,3 +32,9 @@
          run_job_template:
           name: "ScalingDisk"
           organization: "Default"    
+     - name: Hello World
+       condition: event.payload.problemLevel contains "RESOURCE_CONTENTION"
+       action:
+         run_job_template:
+          name: "Demo Job Template"
+          organization: "Default"    
