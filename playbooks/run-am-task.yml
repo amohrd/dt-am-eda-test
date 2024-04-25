@@ -4,7 +4,7 @@
   tasks:
     - name: Print Dynatrace event
       debug:
-        msg: "{{ ansible_eda.event }}"
+        msg: "{{ ansible_eda.event.payload.eventData }}"
     - name: "Here could be your ansible task for resolving the problem"
       debug: 
         msg: "Resolve problem for the following affected entities {{ ansible_eda.event.title }}"
