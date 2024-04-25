@@ -9,7 +9,7 @@
 
   rules:
     - name: DummyAll 
-      condition: event.kind contains "DAVIS_PROBLEM"
+      condition: event.payload.eventData["event.kind"] is match ("DAVIS_PROBLEM")  
       action:
         run_job_template:
           name: "Demo Job Template"
