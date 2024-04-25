@@ -8,11 +8,15 @@
         token: '{{ var_eda_token }}' 
 
   rules:
-    - name: DummyAll
-      condition: event.payload.eventData["event.kind"] is match ("DAVIS_PROBLEM")
+    - name: Problem payload Dynatrace for CPU issue
+      condition: event.payload.problemTitle contains "CPU saturation"
       action:
         run_job_template:
-          name: "Trigger test playbook"
+          name: "Remediate CPU saturation issue"
           organization: "Default"
-        # run_playbook: # use run_playbook for local tests with ansible-rulebook
-          # name: playbooks/run-task.yml
+    - name: Problem payload Dynatrace for App Failure rate increase issue
+      condition: event.payload.problemTitle contains "Failure rate increase"
+      action:
+        run_job_template:
+          name: "Remediate Failure rate increase EC2"
+          organization: "Default"
