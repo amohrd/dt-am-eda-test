@@ -1,7 +1,7 @@
 ---
 -
   hosts: localhost
-  name: "AM-Remediate CPU saturation"
+  name: "AM-Remediate Failure rate"
   tasks:
     - name: Print Dynatrace ProblemId
       debug:
@@ -18,7 +18,7 @@
         timeout: 0
       when: ansible_eda.event.payload.eventData.problemStatus == "OPEN"
     -
-      name: "Remediate CPU saturation issue"
+      name: "Remediate Failure rate issue"
       block:
         -
           name: "call easytravel configuration UI to apply configuration change"
