@@ -8,9 +8,11 @@
         token: '{{ var_eda_token }}' 
 
   rules:
-    - name: DummyAll 
-      condition: event.payload.eventData["event.kind"] is match ("DAVIS_PROBLEM")  
+    - name: API Endpoint not available
+      condition: event.payload.eventData["event.kind"] is match ("DAVIS_PROBLEM")
       action:
         run_job_template:
-          name: "Demo Job Template"
+          name: "Trigger test playbook"
           organization: "Default"
+        # run_playbook: # use run_playbook for local tests with ansible-rulebook
+          # name: playbooks/run-task.yml
