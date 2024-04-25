@@ -12,7 +12,7 @@
       condition: event.payload.eventData.problemTitle is match ("Failure rate increase")
       action:
         run_job_template:
-          name: "Remediate Failure rate increase EC2"
+          name: "AM-Remediate Failure rate"
           organization: "Default"
     - name: Problem payload Dynatrace for CPU issue
       condition: event.payload.eventData.problemTitle is match ("CPU saturation")
