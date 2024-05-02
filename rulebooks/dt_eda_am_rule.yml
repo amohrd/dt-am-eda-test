@@ -18,5 +18,5 @@
       condition: event.payload.eventData.problemTitle is match ("CPU saturation")
       action:
         run_job_template:
-          name: "Remediate CPU saturation issue"
+          name: "AM-Remediate CPU saturation"
           organization: "Default"
