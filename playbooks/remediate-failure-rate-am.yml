@@ -14,7 +14,7 @@
     
     - name: Sleep for 5 mins to activate Davis AI
       wait_for:
-        delay: 180
+        delay: 300
         timeout: 0
         
     - name: "Remediate Failure rate issue"
